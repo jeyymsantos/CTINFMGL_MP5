@@ -1,7 +1,7 @@
 <?php
 
 require 'connection.php';
-require_once 'session.php';
+require 'session_admin.php';
 
 $sql = "SELECT id, name, username, role FROM tblmp5";
 $result = $conn->query($sql);
@@ -27,18 +27,16 @@ $result = $conn->query($sql);
         <h1> Hi <?= $_SESSION['logged_in'] ?>! </h1>
 
         <?php
-            if(!empty($_SESSION['delete_msg'])){
-                echo "<h3>" . $_SESSION['delete_msg'] . "</h3>";
-                unset($_SESSION['delete_msg']);
-            }
-            else if(!empty($_SESSION['add_msg'])){
-                echo "<h3>" . $_SESSION['add_msg'] . "</h3>";
-                unset($_SESSION['add_msg']);
-            }
-            else if(!empty($_SESSION['update_msg'])){
-                echo "<h3>" . $_SESSION['update_msg'] . "</h3>";
-                unset($_SESSION['update_msg']);
-            }
+        if (!empty($_SESSION['delete_msg'])) {
+            echo "<h3>" . $_SESSION['delete_msg'] . "</h3>";
+            unset($_SESSION['delete_msg']);
+        } else if (!empty($_SESSION['add_msg'])) {
+            echo "<h3>" . $_SESSION['add_msg'] . "</h3>";
+            unset($_SESSION['add_msg']);
+        } else if (!empty($_SESSION['update_msg'])) {
+            echo "<h3>" . $_SESSION['update_msg'] . "</h3>";
+            unset($_SESSION['update_msg']);
+        }
         ?>
 
         <a href="add.php" class="btn btn-primary"> Add User </a>

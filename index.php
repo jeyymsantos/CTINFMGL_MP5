@@ -3,7 +3,12 @@
 require 'connection.php';
 
 if(!empty($_SESSION['logged_in'])){
-    header("Location: admin.php");
+
+    if($_SESSION['admin']){
+        header("Location: admin.php");
+    }else{
+        header("Location: customer.php");
+    }
     die();
 }
 
@@ -15,11 +20,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "SELECT name, role, username, password FROM tblmp5 
     WHERE username = '$username' && password = '$password'";
     $result = $conn->query($sql);
+    $user = $result->fetch_assoc();
     
     if ($result->num_rows > 0) {
         $_SESSION['logged_in'] = $username;
+        $_SESSION['logged_role'] = $user['role'];
+
         unset($_SESSION['login_msg']);
-        header("Location: admin.php");
+        
+        if($_SESSION['logged_role'] == 'admin'){
+            header("Location: admin.php");
+        }else{
+            header("Location: customer.php");
+        }
         die();
       } else {
         $_SESSION['login_msg'] = "Username & Password doesn't exist!";

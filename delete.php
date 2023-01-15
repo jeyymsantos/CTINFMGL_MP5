@@ -1,6 +1,6 @@
 <?php
 require 'connection.php';
-require_once 'session.php';
+require 'session_admin.php';
 
 $id = $_GET['id'];
 

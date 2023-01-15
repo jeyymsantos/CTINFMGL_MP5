@@ -1,6 +1,7 @@
 <?php
 require 'connection.php';
-require_once 'session.php';
+require 'session_admin.php';
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
