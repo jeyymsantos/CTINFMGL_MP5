@@ -24,7 +24,7 @@ $result = $conn->query($sql);
 
     <div class="container mt-5">
 
-        <h1> Hi <?= $_SESSION['logged_in'] ?>! </h1>
+        <h1> Hi <?= $_SESSION['logged_role'] . " " . $_SESSION['logged_in'] ?>! </h1>
 
         <?php
         if (!empty($_SESSION['delete_msg'])) {
